@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## 📆 Calendar Event App – Frontend
 
-## Getting Started
+Frontend cho ứng dụng quản lý sự kiện lịch Dương/Âm và đồng bộ Google Calendar, giao diện hiện đại tích hợp Next.js, React, Tailwind.
 
-First, run the development server:
+---
+
+### 🛠 Công nghệ sử dụng
+
+* **Next.js 15 App Router**
+* **React 19** + **React Query 5**
+* **TailwindCSS** + ShadCN UI
+* **Zod** + **Zodios** (API schema & fetcher)
+* **FullCalendar** (lịch hiển thị)
+* **vietnamese-lunar-calendar** (ngày âm lịch)
+
+---
+
+### ✨ Hướng dẫn khởi chạy
+
+#### 1. Cài đặt
+
+```bash
+npm install
+```
+
+#### 2. Khởi chạy dev
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### 3. Build production
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+> Lưu ý: frontend cần backend chạy ở `http://localhost:3001`
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+### ✅ Đã triển khai
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* [x] Giao diện lịch FullCalendar tích hợp ngày Dương + ngày âm
+* [x] Highlight mùng 1, rằm và các ngày lễ âm
+* [x] Popup tạo/sửa/xoá sự kiện
+* [x] Đăng nhập/đăng ký bằng form + Google
+* [x] Lưu token JWT trong localStorage + đồng bộ với React Context
+* [x] Gửi token trong header Authorization cho API
+* [x] Bảo vệ route `/dashboard`, redirect về login nếu chưa xác thực
+* [x] Hook `useEventsQuery`, `useCreateEvent`, ... tích hợp React Query + Zodios
+* [x] Tự đồng load lại sau khi tạo/sửa/xóa event
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+### 🧍 Chưa triển khai
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* [ ] UI calendar dạng danh sách/ngày/tuần
+* [ ] Tuỳ chọn giờ nhắc/sự kiện lặp lại
+* [ ] Đồng bộ hai chiều với Google Calendar (import events)
+* [ ] Cài đặt user: đổi tên, mật khẩu, timezone...
+* [ ] Tích hợp PWA/Noti để nhắc lịch
+* [ ] Đa ngôn ngữ / Hỗ trợ mobile
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+### 📁 Cấu trúc thư mục
+
+```
+src/
+├── app/              # App router pages: login, register, dashboard
+├── components/       # CalendarView, EventModal, UI shadcn
+├── contexts/         # AuthContext (quản lý token)
+├── lib/              # zodios client, hook API
+└── styles/           # Tailwind, global.css
+```
